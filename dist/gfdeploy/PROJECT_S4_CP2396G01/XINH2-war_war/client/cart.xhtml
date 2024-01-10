@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+
+    </h:head>
+    <h:body>
+        <ui:composition template="/layouts/clientLayouts.xhtml">
+            <ui:define name="content">
+                <f:metadata>
+                    <f:event type="preRenderView" listener="#{loginMB.checkCustomer()}"></f:event>
+                </f:metadata>
+                <section class="breadcrumb breadcrumb_bg">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="breadcrumb_iner">
+                                    <div class="breadcrumb_iner_item">
+                                        <h2>Shopping Cart</h2>
+                                        <p>Home <span>-</span>Shopping Cart</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <h:form>
+                    <h:commandLink style="font-size: 30px;" action="#{cartMB.emptyCart()}"/>
+                </h:form> 
+                <section class="cart_area padding_top">
+                    <div class="whole-wrap">
+                        <div class="container box_1170" style="text-align: center;">
+                            <c:if test="#{cartMB.countCart()==0}">
+                                <div class="section-top-border">
+                                    <h4>Your Cart is Empty!</h4>
+                                </div>
+                                <div class="shipping_box" style="text-align: center;">
+                                    <h:link class="btn_3" outcome="/client/product.xhtml">Continue Shopping</h:link>
+                                </div>
+                            </c:if>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <c:if test="#{cartMB.countCart()>0}">
+                            <h6 style="color: #006400;">#{cartMB.message}</h6><br/>
+                            <div class="cart_inner">
+                                <h:panelGroup id="cartshow">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Product Name</th>
+                                                    <th scope="col">Price</th>
+                                                    <th scope="col">Promotional Price</th>
+                                                    <th scope="col">Quantity</th>
+                                                    <th scope="col">Total</th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <ui:repeat  value="#{cartMB.showCartMB()}" var="itemCart" >
+                                                    <tr>
+                                                        <td>
+                                                            <div class="media">
+                                                                <div class="d-flex">
+                                                                    <h:graphicImage url="#{itemCart.image}" alt="Product" width="60px"/>
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <p><h:outputText value="#{itemCart.proName}"/></p>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <h5>$<h:outputText id="pricecart" value="#{itemCart.unitPrice}"/></h5>
+                                                        </td>
+                                                        <td width="20%"><h5><h:outputText value="$#{itemCart.sale ? itemCart.priceAfterSale : itemCart.unitPrice }" /></h5></td>
+                                                        <td width="30%">
+                                                            <h:form>
+                                                                
+                                                                <h:commandButton style="border: none;" class="btn_1" value=" - "  action="#{cartMB.updateCart(itemCart.proID, false)}"  >
+                                                                    <f:ajax execute="@this" render="cartshow  " />
+                                                                </h:commandButton> &nbsp;&nbsp;
+                                                                <h:outputText id="numberProduct" value="#{itemCart.quantity}"/>&nbsp;&nbsp;
+                                                                <h:commandButton style="border: none;" class="btn_1" value=" + " type="submit"  action="#{cartMB.updateCart(itemCart.proID, true)}" >
+                                                                    <f:ajax execute="@this" render="cartshow   " />
+                                                                </h:commandButton>
+                                                            </h:form> 
+                                                        </td>
+                                                        <td>
+                                                            <h5><h:outputText id="idtotocart" value="$#{itemCart.totalPrice}"/></h5>
+                                                        </td>
+                                                        <td>
+                                                            <h:form>                                                              
+                                                                <h:commandButton style="border: none;" class="btn_3" value="Delete"  action="#{cartMB.removeCart(itemCart.proID)}" >
+                                                                    
+                                                                </h:commandButton>
+                                                            </h:form> 
+                                                        </td>
+                                                    </tr>
+                                                </ui:repeat>
+
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td> 
+                                                    <td></td>
+                                                    <td>
+                                                        <h5>Total Quantity Product:</h5>
+                                                    </td>
+                                                    <td>
+                                                        <h5><b style="color: black; font-size: 16px;"><h:outputText id="totoproductcart" value="#{cartMB.totalProCart}"/></b></h5>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td> 
+                                                    <td></td>
+                                                    <td>
+                                                        <h5>Subtotal:</h5>
+                                                    </td>
+                                                    <td>
+                                                        <h5><b style="color: black; font-size: 16px;">$<h:outputText value="#{cartMB.totalMoneyCart}"/></b></h5>
+                                                    </td>
+                                                </tr>
+                                                <tr class="shipping_area">
+                                                    <td>
+
+                                                    </td>
+                                                    <td>  
+                                                        <div class="shipping_box">
+                                                            <h:link class="btn_3" outcome="/client/product.xhtml">Continue Shopping</h:link>
+                                                        </div>
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td> 
+                                                        <div class="shipping_box">
+                                                            <h:form>
+                                                                <h:commandLink class="btn_3" type="submit" value="Proceed To Checkout" action="#{customerMB.showProfileCustomer(loginMB.username)}"/>
+                                                            </h:form>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </h:panelGroup>
+                            </div>
+                        </c:if>
+                    </div>
+                </section>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

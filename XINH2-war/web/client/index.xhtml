@@ -1,0 +1,311 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+
+    </h:head>
+    <h:body>
+        <ui:composition template="/layouts/clientLayouts.xhtml">
+            <ui:define name="content">
+                <section class="banner_part">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-12">
+                                <div class="banner_slider owl-carousel">
+                                    <div class="single_banner_slider">
+                                        <div class="row">
+                                            <div class="col-lg-5 col-md-8">
+                                                <div class="banner_text">
+                                                    <div class="banner_text_iner">
+                                                        <h1>XINH Furniture</h1>
+                                                        <p>Serve to lead – Bring convenience to life</p>
+                                                        <h:link outcome="/client/product.xhtml" class="btn_2">buy now</h:link>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="banner_img d-none d-lg-block">
+                                                <img src="#{resource['/client/img/sliderImage1.png']}" alt=""/>
+                                            </div>
+                                        </div>
+                                    </div><div class="single_banner_slider">
+                                        <div class="row">
+                                            <div class="col-lg-5 col-md-8">
+                                                <div class="banner_text">
+                                                    <div class="banner_text_iner">
+                                                        <h1>Cloth and Wood
+                                                            Sofa</h1>
+                                                        <p>Incididunt ut labore et dolore magna aliqua quis ipsum
+                                                            suspendisse ultrices gravida. Risus commodo viverra</p>
+                                                        <h:link outcome="/client/product.xhtml" class="btn_2">buy now</h:link>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="banner_img d-none d-lg-block">
+                                                <img src="#{resource['/client/img/home3.png']}" alt="" width="300px"/>
+                                            </div>
+                                        </div>
+                                    </div><div class="single_banner_slider">
+                                        <div class="row">
+                                            <div class="col-lg-5 col-md-8">
+                                                <div class="banner_text">
+                                                    <div class="banner_text_iner">
+                                                        <h1>Convenience and Luxury</h1>
+                                                        <p>Incididunt ut labore et dolore magna aliqua quis ipsum
+                                                            suspendisse ultrices gravida. Risus commodo viverra</p>
+                                                        <h:link outcome="/client/product.xhtml" class="btn_2">buy now</h:link>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="banner_img d-none d-lg-block">
+                                                <img src="#{resource['/client/img/home4.png']}" alt="" width="500px"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                               
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="feature_part padding_top">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="section_tittle text-center">
+                                    <h2>Featured Category</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="single_feature_post_text">
+                                    <p>Premium Quality</p>
+                                    <h3>Latest foam Sofa</h3>
+                                    <h:link outcome="/client/product.xhtml" styleClass="btn_3">View All</h:link>
+                                    <img src="#{resource['/client/img/offer_img.png']}" alt="" width="250px"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="single_feature_post_text">
+                                    <p>Premium Quality</p>
+                                    <h3>Latest foam Sofa</h3>
+                                    <h:link outcome="/client/product.xhtml" styleClass="btn_3">View All</h:link>
+                                    <img src="#{resource['/client/img/product-2.png']}" alt="" width="250px"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="single_feature_post_text">
+                                    <p>Premium Quality</p>
+                                    <h3>Latest foam Sofa</h3>
+                                    <h:link outcome="/client/product.xhtml" styleClass="btn_3">View All</h:link>
+                                    <img src="#{resource['/client/img/den1.png']}" alt="" width="300px"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="single_feature_post_text">
+                                    <p>Premium Quality</p>
+                                    <h3>Latest foam Sofa</h3>
+                                    <h:link outcome="/client/product.xhtml" styleClass="btn_3">View All</h:link>
+                                    <img src="#{resource['/client/img/den2.png']}" alt="" width="350px"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="product_list section_padding">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12">
+                                <div class="section_tittle text-center">
+                                    <h2>Featured Products</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="product_list_slider owl-carousel">
+                                    <div class="single_product_list_slider">
+                                        <div class="row align-items-center justify-content-between">
+                                            <c:forEach items="#{productMB.showAllProduct()}" var="itemP">
+                                                <c:if test="#{itemP.promotionStatus != 1}">
+                                                    <div class="col-lg-3 col-sm-6">
+                                                        <div class="single_product_item">
+                                                            <h:graphicImage url="#{itemP.image}" class="shop-image"/>
+                                                            <h:link outcome="/client/productDetail.xhtml">
+                                                                <h:form>
+                                                                    <h:commandLink type="submit" value="#{itemP.productName}" action="#{productMB.showProductDetails(itemP.productID)}" style="font-size: 18px; color: #666666;margin-top: 10px;"/><br/>
+                                                                </h:form>
+                                                            </h:link>
+                                                            <div class="rating_list">
+                                                                <ul class="list">
+                                                                    <li>
+                                                                        <a href="#">
+                                                                            <i class="fa fa-star" style="color: yellow;"></i>
+                                                                            <i class="fa fa-star" style="color: yellow;"></i>
+                                                                            <i class="fa fa-star" style="color: yellow;"></i>
+                                                                            <i class="fa fa-star" style="color: yellow;"></i>
+                                                                            <i class="fa fa-star"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <h3><h:outputText value="$#{itemP.unitPrice}" style="font-size: 18px; color: #ff3368;margin-top: 15px;"/></h3>
+                                                            <h:form>                                                                                                                                                                            
+                                                                <h:commandButton type="submit" action="#{cartMB.addCartProduct(itemP.productID)}" value="Add To Cart" class="btn_2" style="margin-bottom: 20px;border: none;"/> 
+                                                            </h:form>
+                                                        </div>
+                                                    </div> 
+                                                </c:if>
+                                            </c:forEach>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 50px;">
+                            <h:link class="btn_2" outcome="/client/product.xhtml">View All</h:link>
+                        </div>
+                    </div>
+                </section>
+                <section class="our_offer section_padding">
+                    <div class="container">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="offer_img">
+                                    <img src="#{resource['/client/img/slider11.png']}" alt=""/>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="offer_text">
+                                    <h2>Weekly Sale on
+                                        60% Off All Products</h2>
+                                    <div class="date_countdown">
+                                        <div id="timer">
+                                            <div id="days" class="date"></div>
+                                            <div id="hours" class="date"></div>
+                                            <div id="minutes" class="date"></div>
+                                            <div id="seconds" class="date"></div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="enter email address"
+                                               aria-label="Recipient's username" aria-describedby="basic-addon2"/>
+                                        <div class="input-group-append">
+                                            <a href="#" class="input-group-text btn_2" id="basic-addon2">book now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="product_list best_seller section_padding">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12">
+                                <div class="section_tittle text-center">
+                                    <h2>Best Sellers</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-lg-12">
+                                <div class="best_product_slider owl-carousel">
+                                    <c:forEach items="#{productMB.showAllProduct()}" var="itemProduct">
+                                        <c:if test="#{itemProduct.promotionStatus == 1}">
+                                            <div class="single_product_item">
+                                                <div class="promotion-lable">#{itemProduct.promotionsCollection[0].discount}%</div>
+                                                <h:graphicImage url="#{itemProduct.image}"/>
+                                                <h4><h:outputText value="#{itemProduct.productName}"/></h4>
+                                                <del style="font-size: 15px; color: #808080;">$<h:outputText value="#{itemProduct.unitPrice}"/></del>
+                                                <b style="font-size: 18px;">&nbsp;$#{itemProduct.unitPrice - (itemProduct.unitPrice * itemProduct.promotionsCollection[0].discount/100) }</b>
+                                                <div class="rating_list" style="margin-top: 10px;">
+                                                    <ul class="list">
+                                                        <li>
+                                                            <a href="#">
+                                                                <i class="fa fa-star" style="color: yellow;"></i>
+                                                                <i class="fa fa-star" style="color: yellow;"></i>
+                                                                <i class="fa fa-star" style="color: yellow;"></i>
+                                                                <i class="fa fa-star" style="color: yellow;"></i>
+                                                                <i class="fa fa-star" style="color: yellow;"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <h:form>                                                                                                                                                                            
+                                                    <h:commandButton type="submit" action="#{cartMB.addCartProduct(itemProduct.productID)}" value="Add To Cart" class="btn_2" style="margin-top: 20px;border: none;"/> 
+                                                </h:form>
+                                            </div>  
+                                        </c:if>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 50px;">
+                            <h:link class="btn_2" outcome="/client/product.xhtml">View All</h:link>
+                        </div>
+                    </div>
+                </section>
+                <section class="subscribe_area section_padding">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-7">
+                                <div class="subscribe_area_text text-center">
+                                    <h5>Join Our Newsletter</h5>
+                                    <h2>Subscribe to get Updated
+                                        with new offers</h2>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="enter email address"
+                                               aria-label="Recipient's username" aria-describedby="basic-addon2"/>
+                                        <div class="input-group-append">
+                                            <a href="#" class="input-group-text btn_2" id="basic-addon2">subscribe now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="client_logo padding_top">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-12">
+                                <div class="single_client_logo">
+                                    <img src="#{resource['/client/img/client_logo/client_logo_1.png']}" alt=""/>
+                                </div>
+                                <div class="single_client_logo">
+                                    <img src="#{resource['/client/img/client_logo/client_logo_2.png']}" alt=""/>
+                                </div>
+                                <div class="single_client_logo">
+                                    <img src="#{resource['/client/img/client_logo/client_logo_3.png']}" alt=""/>
+                                </div>
+                                <div class="single_client_logo">
+                                    <img src="#{resource['/client/img/client_logo/client_logo_4.png']}" alt=""/>
+                                </div>
+                                <div class="single_client_logo">
+                                    <img src="#{resource['/client/img/client_logo/client_logo_5.png']}" alt=""/>
+                                </div>
+                                <div class="single_client_logo">
+                                    <img src="#{resource['/client/img/client_logo/client_logo_3.png']}" alt=""/>
+                                </div>
+                                <div class="single_client_logo">
+                                    <img src="#{resource['/client/img/client_logo/client_logo_1.png']}" alt=""/>
+                                </div>
+                                <div class="single_client_logo">
+                                    <img src="#{resource['/client/img/client_logo/client_logo_2.png']}" alt=""/>
+                                </div>
+                                <div class="single_client_logo">
+                                    <img src="#{resource['/client/img/client_logo/client_logo_3.png']}" alt=""/>
+                                </div>
+                                <div class="single_client_logo">
+                                    <img src="#{resource['/client/img/client_logo/client_logo_4.png']}" alt=""/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

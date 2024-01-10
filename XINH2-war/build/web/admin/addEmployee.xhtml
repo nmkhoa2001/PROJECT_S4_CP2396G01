@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="/layouts/adminLayouts.xhtml">
+            <ui:define name="content"> 
+                <f:metadata>
+                    <f:event type="preRenderView" listener="#{loginMB.checkLogin()}"></f:event>
+                </f:metadata>
+                <h:form id="quickForm" >
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card card-info">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Create Account Employee</h3>
+                                        <div class="card-tools">
+                                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <h:outputLabel for="username" value="Username *"/>
+                                            <h:inputText value="#{employeeMB.employees.username}" styleClass="form-control" required = "true" id="username" requiredMessage="This field cannot be empty!"/>
+                                            <h:message for="username"  style = "color: red; font-size: 13px;" />
+                                            <h:outputText value="#{employeeMB.usernameMessage}" style = "color: red; font-size: 13px;" />
+                                        </div>
+                                        <div class="form-group">
+                                            <h:outputLabel for="fullname" value="Full Name *"/>
+                                            <h:inputText value="#{employeeMB.employees.fullname}" styleClass="form-control" required = "true" id="fullname" requiredMessage="This field cannot be empty!"/>
+                                            <h:message for="fullname" style = "color: red; font-size: 13px;" />
+                                            <h:outputText value="#{employeeMB.fullnameMessage}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <h:outputLabel for="password" value="Password *"/>
+                                            <h:inputSecret value="#{employeeMB.employees.password}"  styleClass="form-control" required = "true" id="password" requiredMessage="This field cannot be empty!"/>
+                                            <h:message for="password"  style = "color: red; font-size: 13px;"  />
+                                            <h:outputText value="#{employeeMB.passwordMessage}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card card-info">
+                                    <div class="card-header">
+                                        <div class="card-tools">
+                                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <h:outputLabel for="address" value="Address *"/>
+                                            <h:inputText value="#{employeeMB.employees.address}" styleClass="form-control" required = "true" id="address" requiredMessage="This field cannot be empty!"/>
+                                            <h:message for="address"  style = "color: red; font-size: 13px;"  />
+                                            <h:outputText value="#{employeeMB.addressMessage}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <h:outputLabel for="phone" value="Phone Number *"/>
+                                            <h:inputText value="#{employeeMB.employees.phoneNumber}" maxlength="11" styleClass="form-control" required = "true" id="phone" requiredMessage="This field cannot be empty!"/>
+                                            <h:message for="phone"  style = "color: red; font-size: 13px;" />
+                                            <h:outputText value="#{employeeMB.phoneMessage}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <h:outputLabel for="email" value="Email *"/>
+                                            <h:inputText value="#{employeeMB.employees.email}"  styleClass="form-control" required = "true" id="email" requiredMessage="This field cannot be empty!"/>
+                                            <h:message for="email"  style = "color: red; font-size: 13px;"  />
+                                            <h:outputText value="#{employeeMB.emailMessage}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <h:commandButton type="submit" class="btn btn-info btn-sm" action="#{employeeMB.createEmployee()}" value="Save"/>&nbsp;
+                                <h:link outcome="/admin/employeeList.xhtml" value="Back" class="btn btn-info btn-sm"/>
+                            </div>
+                        </div>
+                    </section>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

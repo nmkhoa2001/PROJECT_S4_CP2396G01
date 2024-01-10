@@ -1,0 +1,222 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+
+    </h:head>
+    <h:body>
+        <ui:composition template="/layouts/clientLayouts.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <section class="breadcrumb breadcrumb_bg">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <div class="breadcrumb_iner">
+                                        <div class="breadcrumb_iner_item">
+                                            <h2>Product Details</h2>
+                                            <p>Home <span>-</span>Product Details</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="product_image_area section_padding">
+                        <div class="container">
+                            <div class="row s_product_inner justify-content-between">
+                                <div class="col-lg-2 col-xl-7">
+                                    <div class="product_slider_img">
+                                        <div id="vertical">
+                                            <h:graphicImage url="#{productMB.products.image}" id="image" width="80%" height="100%"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-xl-5">
+                                    <div class="s_product_text">
+                                        <h:inputHidden value="#{productMB.products.productID}"/>
+                                        <h1 style="color: black;"><h:outputText value="#{productMB.products.productName}"/></h1><br/>
+                                        <h2><h:outputText value="$#{productMB.products.unitPrice}"/></h2>
+                                        <ul class="list">
+                                            <li>
+                                                <a class="active" href="#">
+                                                    <span>Category</span> : <b> <h:outputText value="#{productMB.products.categoryID.categoryName}"/></b></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"> <span>Available</span> : <b><h:outputText value="#{productMB.products.quantity}"/></b></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"> <span>Reviews</span> : 
+                                                    <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                    <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                    <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                    <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                    <i class="fa fa-star" style="color: #FF9900;"></i>                                                  
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#"> <span>Supplier</span> : <b><h:outputText value="#{productMB.products.supplierID.companyName}"/></b></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"> <span>Brand</span> : <b><h:outputText value="#{productMB.products.brandID.brandName}"/></b></a>
+                                            </li>
+                                        </ul>
+                                        <p>
+                                            <h:outputText value="#{productMB.products.description}"/>
+                                        </p>
+                                        <div class="card_area d-flex justify-content-between align-items-center">
+                                            <div class="product_count">
+                                                <span class="inumber-decrement"> <i class="ti-minus"></i></span>
+                                                <input class="input-number" type="text" value="1" min="0" max="10"/>
+                                                <span class="number-increment"> <i class="ti-plus"></i></span>
+                                            </div><br/>
+                                            <h:commandLink action="#{cartMB.addCartProduct(productMB.products.productID)}" value="Add To Cart" class="btn btn-info btn-sm" styleClass="btn_2" style="margin-bottom: 10px;"/> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <section class="product_description_area">
+                        <div class="container">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                                       aria-selected="true">Description</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
+                                       aria-selected="false">Product reviews</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <p>
+                                        <h:outputText value="#{productMB.products.description}"/>
+                                    </p>
+                                </div>
+                                <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+                                    <div class="row">
+                                        <div class="col-lg-7">
+                                            <h4>Product reviews</h4><br/>
+                                            <div class="row">
+                                                <div class="col-lg-3">
+                                                    <h:graphicImage url="#{customerMB.customers.avatar}" class="rounded-circle img-fluid" width="150px" />
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <div class="row contact_form">
+                                                        <div class="col-md-11">
+                                                            <div class="form-group">
+                                                                <h:inputTextarea class="form-control w-100" id="message" cols="10" rows="8" value="#{feedbackMB.content}" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Feedback Content'"/>
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                    <div class="review_box">
+                                                        <p>Reviews:</p>
+                                                        <ul class="list">
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div><br/>
+                                                    <h:commandLink class="btn_3" action="#{feedbackMB.addFeedback( productMB.products.productID)}"  value="Send"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <div class="review_list">
+                                                <c:set value="#{productMB.products.productID}" var="idPro" />
+                                                <c:forEach  items="#{feedbackMB.showListClient()}" var="item" >
+                                                    <c:if test="#{item.feedbacks.status == 1 and item.products.productID == idPro}">
+                                                        <div class="review_item">
+                                                            <div class="media">
+                                                                <div class="d-flex">
+                                                                    <img src="#{item.feedbacks.customerID.avatar}" alt="" width="60px;"/>
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <h4>#{item.feedbacks.creationDate}</h4>
+                                                                    <c:forEach begin="1" step="1" end="#{item.reviews}">
+                                                                        <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                                    </c:forEach>
+                                                                </div>
+                                                            </div>
+                                                            <p>
+                                                                #{item.feedbackContent}
+                                                            </p>
+                                                        </div><hr/>
+                                                    </c:if>
+                                                </c:forEach>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="product_list best_seller">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-12">
+                                    <div class="section_tittle text-center">
+                                        <h2>Best Sellers <span>shop</span></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row align-items-center justify-content-between">
+                                <div class="col-lg-12">
+                                    <div class="best_product_slider owl-carousel">
+                                        <ui:repeat value="#{productMB.showAllProduct()}" var="itemProduct">
+                                            <div class="single_product_item" style="text-align: center;">
+                                                <h:graphicImage url="#{itemProduct.image}" width="50px"/>
+                                                <div class="single_product_text" style="padding: 20px;">
+                                                    <h4><h:outputText value="#{itemProduct.productName}"/></h4>
+                                                    <div class="media-body">
+                                                        <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                        <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                        <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                        <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                        <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                    </div>
+                                                    <del style="font-size: 16px;">$60.0</del>&nbsp;&nbsp;<h:outputText value="$#{itemProduct.unitPrice}" style="font-size: 16px;"/>
+                                                </div>
+                                            </div>
+                                        </ui:repeat>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 50px;">
+                                <h:link class="btn_2" outcome="/client/product.xhtml">View All</h:link>
+                            </div>
+                        </div>
+                    </section>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

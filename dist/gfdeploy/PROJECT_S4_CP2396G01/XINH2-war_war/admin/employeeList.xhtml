@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="/layouts/adminLayouts.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <f:metadata>
+                        <f:event type="preRenderView" listener="#{loginMB.checkLogin()}"></f:event>
+                    </f:metadata>
+                    <section class="content-header">
+                        <div class="container-fluid">
+                            <div class="row mb-2">
+                                <div class="col-sm-6">
+                                    <small class="badge badge-success">
+                                        <i class="far fa-check-circle"></i><h:outputText value="&nbsp;#{employeeMB.messageAddEmployee}" style="color: #fff; font-size: 16px;"/>
+                                        <i class="far fa-check-circle"></i><h:outputText value="&nbsp;#{employeeMB.messageDeleteEmployee}" style="color: #fff; font-size: 16px;"/>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Employee Management</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Employee Management</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">                        
+                            <h:link class="btn btn-info btn-sm" outcome="/admin/addEmployee.xhtml"><i class="fas fa-plus"></i> Add</h:link>
+                        </div>
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Full Name</th>
+                                        <th>Username</th>
+                                        <th>Address</th>
+                                        <th>Phone</th>
+                                        <th>Email</th>
+                                        <th>Account Status</th>
+                                        <th>Action</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{employeeMB.showAllEmployee()}" var="itemEmployee" id="formTest">
+                                        <tr>                                                     
+                                            <td><h:outputText value="#{itemEmployee.fullname}"/></td>
+                                            <td><h:outputText value="#{itemEmployee.username}"/></td>
+                                            <td><h:outputText value="#{itemEmployee.address}"/></td>
+                                            <td><h:outputText value="#{itemEmployee.phoneNumber}"/></td>
+                                            <td><h:outputText value="#{itemEmployee.email}"/></td>
+                                            <td>
+                                                <small class="badge badge-warning">
+                                                    <h:outputText value="#{itemEmployee.status == 1 ? 'Account Enabled' : 'Account Disabled'}"/>
+                                                </small>
+                                            </td>
+
+                                            <td>
+                                                <h:commandButton class="btn btn-info btn-sm" type="submit" title="Change account status" value="#{itemEmployee.status == 1 ? 'Enable' : 'Disable'}" action="#{employeeAccountMB.toggleEnabled(itemEmployee.employeeID)}" />&nbsp;
+
+                                            </td>
+                                            <td><h:commandLink class="btn btn-info btn-sm" action="#{employeeMB.deleteEmployee(itemEmployee.employeeID)}" title="Delete" onclick="if (!confirm('Are you sure you want to delete this?')) {
+                                                        return false;
+                                                    }
+                                                    ;
+                                                    return true;">
+                                                    <i class="fas fa-trash"></i>
+                                                </h:commandLink></td>
+                                        </tr>  
+                                    </ui:repeat>                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

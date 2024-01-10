@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="/layouts/adminLayouts.xhtml">
+            <ui:define name="content">
+                <f:metadata>
+                    <f:event type="preRenderView" listener="#{loginMB.checkLogin1()}"></f:event>
+                </f:metadata>
+                <h:form>
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="card-title">Product Management</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Product Management</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h:commandLink class="btn btn-info btn-sm" action="#{productMB.showAddForm()}">
+                                <i class="fas fa-plus"></i>Add
+                            </h:commandLink>                   
+                        </div>
+                        <div class="invoice p-3 mb-3">
+                        <div class="row">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h5>Chart Statistical Products inventory</h5>
+                                </div>
+                                <p:barChart model="#{chartJsView.revenueProduct}" style="width: 100%; height: 500px;"/>
+                            </div>
+                            <h:outputText value="Total Products: #{productMB.totalProduct}"/>
+                        </div>
+                            
+                        </div>
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Product Image</th>
+                                        <th>Product Name</th>                                     
+
+                                        <th>Unit Price</th>
+                                        <th>Price Apply Promotion</th>
+                                        <th>Promotion Status</th>
+                                        <th style="display: none"></th>
+                                        <th style="display: none"></th>
+                                        <th style="display: none"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>                              
+                                    <c:forEach items="#{productMB.showAllProduct()}" var="itemproduct">
+                                        <tr> 
+                                            <td><h:graphicImage url="#{itemproduct.image}" width="50px"/></td>
+                                            <td><h:outputText value="#{itemproduct.productName}"/></td>                                          
+                                            <td><h:outputText value="$#{itemproduct.unitPrice}"/></td>
+                                            <td>
+                                                <small class="badge badge-success">
+                                                    <h:outputText value="$#{itemproduct.promotionStatus == 1 ? itemproduct.unitPrice - (itemproduct.unitPrice * itemproduct.promotionsCollection[0].discount/100) : itemproduct.unitPrice}" /> 
+                                                </small>
+                                            </td>
+                                            <td>                                                
+                                                <h:outputText class="badge#{itemproduct.promotionStatus}" value="#{itemproduct.promotionStatus == 1 ? 'Promotion Enabled' : 'Promotion Disabled'}"/>
+                                            </td>
+
+                                            <td>
+                                                <h:commandLink class="btn btn-info btn-sm" title="View product details" action="#{productMB.showProductDetails(itemproduct.productID)}">
+                                                    <i class="fas fa-eye"></i>
+                                                </h:commandLink>
+                                            </td>
+                                            <td>
+                                                <h:commandLink title="Edit" class="btn btn-info btn-sm" action="#{productMB.showUpdate(itemproduct.productID)}">
+                                                    <i class="fas fa-pencil"></i>
+                                                </h:commandLink>
+                                            </td>
+                                            <td>
+                                                <h:commandLink title="Delete" class="btn btn-danger btn-sm" id="deleteButton" action="#{productMB.deleteProducts(itemproduct.productID)}" onclick="if (!confirm('Are you sure you want to delete this?')) {
+                                                            return false;
+                                                        }
+                                                        ;
+                                                        return true;">
+                                                    <i class="fas fa-trash"></i>
+                                                </h:commandLink>
+                                            </td>
+                                        </tr>  
+                                    </c:forEach>                               
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>  
+
+
+
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

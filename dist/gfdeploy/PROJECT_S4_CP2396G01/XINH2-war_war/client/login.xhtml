@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <h:outputStylesheet name="/client/img/favicon.png"/>
+        <h:outputStylesheet name="/client/css/bootstrap.min.css"/>
+        <h:outputStylesheet name="/client/css/animate.css"/>
+        <h:outputStylesheet name="/client/css/owl.carousel.min.css"/>
+        <h:outputStylesheet name="/client/css/all.css"/>
+        <h:outputStylesheet name="/client/css/flaticon.css"/>
+        <h:outputStylesheet name="/client/css/themify-icons.css"/>
+        <h:outputStylesheet name="/client/css/magnific-popup.css"/>
+        <h:outputStylesheet name="/client/css/slick.css"/>
+        <h:outputStylesheet name="/client/css/style.css"/>
+        <h:outputStylesheet name="/client/css/nice-select.css"/>
+        <h:outputStylesheet name="/client/css/price_rangs.css"/>
+        <style>
+            .gradient-custom-3 {
+                background: #ff3368;
+                background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+                background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
+            }
+            .gradient-custom-4 {
+                background: #ff3368;
+                background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+                background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <section class="bg-image"
+                 style="background-image: url('https://webgradients.com/public/webgradients_png/011%20Dusty%20Grass.png');">
+            <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+                <div class="container h-100" style="margin-bottom: 300px;">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-12 col-md-9 col-lg-7 col-xl-7">
+                            <div class="card" style="border-radius: 35px; margin-top: 100px;">
+                                <div class="card-body p-5">
+                                    <h2 class="text-uppercase text-center mb-5">LOGIN</h2>
+                                    <h:form>
+                                        <c:if test="#{loginMB.statusLogin == 5}">
+                                            <div class="form-outline mb-4">
+                                                <p style="color:red;">Username or password is not correct!</p>
+                                            </div>
+                                        </c:if><br/>
+                                        <div class="form-outline mb-4">
+                                            <h:inputText a:placeHolder="Username"  id="username" value="#{loginMB.username}" styleClass="form-control" required = "true" requiredMessage="This field cannot be empty!"/>
+                                            <h:message for = "username" style = "color: red;" /> 
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <h:inputSecret a:placeHolder="Password" id="password" value="#{loginMB.password}" styleClass="form-control" required = "true" requiredMessage="This field cannot be empty!"/>
+                                            <h:message for = "password" style = "color: red;" /> 
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <label for="f-option">Do not have an account?</label>
+                                            <h:link class="lost_pass" outcome="#{customerMB.loadSignUpForm()}"><b>Register Here</b></h:link>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <h:commandButton styleClass="btn btn-block btn-lg btn_3" action="#{loginMB.loginCustomer()}" value="Login" type="submit"/>
+                                        </div>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <h:outputScript name="/asset/getupimage.js"/>
+        <h:outputScript name="/asset/image.js"/>
+        <h:outputScript name="/client/js/jquery-1.12.1.min.js"/>
+        <h:outputScript name="/client/js/popper.min.js"/>
+        <h:outputScript name="/client/js/bootstrap.min.js"/>
+        <h:outputScript name="/client/js/jquery.magnific-popup.js"/>
+        <h:outputScript name="/client/js/swiper.min.js"/>
+        <h:outputScript name="/client/js/masonry.pkgd.js"/>
+        <h:outputScript name="/client/js/owl.carousel.min.js"/>
+        <h:outputScript name="/client/js/jquery.nice-select.min.js"/>
+        <h:outputScript name="/client/js/slick.min.js"/>
+        <h:outputScript name="/client/js/jquery.counterup.min.js"/>
+        <h:outputScript name="/client/js/waypoints.min.js"/>
+        <h:outputScript name="/client/js/contact.js"/>
+        <h:outputScript name="/client/js/jquery.ajaxchimp.min.js"/>
+        <h:outputScript name="/client/js/jquery.form.js"/>
+        <h:outputScript name="/client/js/jquery.validate.min.js"/>
+        <h:outputScript name="/client/js/mail-script.js"/>
+        <h:outputScript name="/client/js/custom.js"/>
+        <h:outputScript name="/client/js/price_rangs.js"/>
+        <h:outputScript name="/client/js/stellar.js"/>
+    </h:body>
+
+</html>

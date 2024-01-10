@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/layouts/adminLayouts.xhtml">
+            <ui:define name="content">
+                <f:metadata>
+                    <f:event type="preRenderView" listener="#{loginMB.checkLogin1()}"></f:event>
+                </f:metadata>
+                <h:form>
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card card-info">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Add Supplier</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="companyname">Company Name *</label>
+                                                <h:inputText value="#{supplierMB.supplier.companyName}" styleClass="form-control" required = "true" id="companyname" requiredMessage="This field cannot be empty!"/>
+                                                <h:message for = "companyname" style = "color: red;" /> 
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="phone">Phone Number *</label>
+                                                <h:inputText value="#{supplierMB.supplier.phoneNumber}" styleClass="form-control" required = "true" id="phone" requiredMessage="This field cannot be empty!"/>
+                                                <h:message for = "phone" style = "color: red;" /> 
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="address">Address *</label>
+                                                <h:inputText value="#{supplierMB.supplier.address}"  styleClass="form-control" required = "true" id="address" requiredMessage="This field cannot be empty!"/>
+                                                <h:message for = "address" style = "color: red;" /> 
+                                            </div> 
+                                            <div class="form-group">
+                                                <label for="email">Email *</label>
+                                                <h:inputText value="#{supplierMB.supplier.email}"  styleClass="form-control" required = "true" id="email" requiredMessage="This field cannot be empty!"/>
+                                                <h:message for = "email" style = "color: red;" /> 
+                                            </div> 
+                                            <div class="form-group">
+                                                <label for="web">Web Page *</label>
+                                                <h:inputText value="#{supplierMB.supplier.website}"  styleClass="form-control" required = "true" id="web" requiredMessage="This field cannot be empty!"/>
+                                                <h:message for = "web" style = "color: red;" /> 
+                                            </div> 
+                                        </div>
+                                        <div class="card-footer">
+                                            <h:commandLink type="submit" class="btn btn-info btn-sm" action="#{supplierMB.createSupplier()}" value="Submit"/>&nbsp;
+                                            <h:link outcome="/admin/supplierList.xhtml" class="btn btn-info btn-sm">Back</h:link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/layouts/adminLayouts.xhtml">
+            <ui:define name="content">
+                <f:metadata>
+                    <f:event type="preRenderView" listener="#{loginMB.checkLogin1()}"></f:event>
+                </f:metadata>
+                <h:form prependId="false" enctype="multipart/form-data">
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card card-info">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Edit Product</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="productname">Product Name: </label>
+                                                <h:inputHidden value="#{productMB.products.productID}"/>
+                                                <h:inputText value="#{productMB.products.productName}" styleClass="form-control" required = "true" id="productname" requiredMessage="This field cannot be empty!"/>
+                                                <h:message for = "productname" style = "color: red;" /> 
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="description">Description: </label>
+                                                <h:inputText value="#{productMB.products.description}" styleClass="form-control" required = "true" id="description" requiredMessage="This field cannot be empty!"/>
+                                                <h:message for = "description" style = "color: red;" /> 
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Category Name:  </label>
+                                                <h:selectOneMenu class="form-control" value="#{productMB.selectedCategory}">
+                                                    <f:selectItems value="#{productMB.showAllCategories()}" var="category" itemValue="#{category.categoryID}" itemLabel="#{category.categoryName}"/>
+                                                </h:selectOneMenu>                                               
+                                            </div>   
+                                            <div class="form-group">
+                                                <label>Supplier Name:  </label>
+                                                <h:selectOneMenu class="form-control" value="#{productMB.selecteSupplier}">
+                                                    <f:selectItems value="#{productMB.showAllSuppliers()}" var="supplier" itemValue="#{supplier.supplierID}" itemLabel="#{supplier.companyName}"/>
+                                                </h:selectOneMenu>                                               
+                                            </div> 
+                                            <div class="form-group">
+                                                <label>Brand Name:  </label>
+                                                <h:selectOneMenu class="form-control" value="#{productMB.selectBrands}">
+                                                    <f:selectItems value="#{productMB.showAllBrands()}" var="brand" itemValue="#{brand.brandID}" itemLabel="#{brand.brandName}"/>
+                                                </h:selectOneMenu>                                               
+                                            </div> 
+                                            <div class="form-group">
+                                                <label for="unitprice">Unit Price: </label>
+                                                <h:inputText value="#{productMB.products.unitPrice}" styleClass="form-control" required = "true" id="unitprice" requiredMessage="This field cannot be empty!"/>
+                                                <h:message for = "unitprice" style = "color: red;" /> 
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="unitprice">Product Image: </label>
+                                                <h:inputFile id="file" class="inputfile" style="display: none;" value="#{productMB.file}"/> <br/>
+                                                <label for="file"> <h:graphicImage url="#{productMB.products.image}" id="image" width="100" /> </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="quantity">Quantity: </label>
+                                                <h:inputText value="#{productMB.products.quantity}" styleClass="form-control" required = "true" id="quantity" requiredMessage="This field cannot be empty!"/>
+                                                <h:message for = "quantity" style = "color: red;" /> 
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <h:commandButton type="submit" class="btn btn-info btn-sm" action="#{productMB.saveUpdateProducts()}" value="Save"/>                                               
+                                            &nbsp;
+                                            <h:link outcome="/admin/productList.xhtml" class="btn btn-info btn-sm">Back</h:link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

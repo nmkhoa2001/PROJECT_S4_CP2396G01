@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/layouts/adminLayouts.xhtml">
+            <ui:define name="content">
+                <f:metadata>
+                    <f:event type="preRenderView" listener="#{loginMB.checkLogin1()}"></f:event>
+                </f:metadata>
+                <h:form>
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card card-info">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Change password</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                <label for="old" class="col-sm-3 col-form-label">Old password</label>
+                                                <div class="col-sm-12">
+                                                    <h:inputHidden value="#{employeeMB.employees.employeeID}"/>
+                                                    <h:inputHidden value="#{employeeMB.employees.status}"/>
+                                                    <h:inputHidden value="#{employeeMB.employees.password}"/>
+                                                    <h:inputHidden value="#{employeeMB.employees.username}"/>
+                                                    <h:inputHidden value="#{employeeMB.employees.fullname}"/>
+                                                    <h:inputHidden value="#{employeeMB.employees.address}"/>
+                                                    <h:inputHidden value="#{employeeMB.employees.phoneNumber}"/>
+                                                    <h:inputHidden value="#{employeeMB.employees.email}"/>
+                                                    <h:inputSecret value="#{employeeMB.employees.oldPass}" styleClass="form-control" required = "true" id="old" requiredMessage="This field cannot be empty!"/>
+                                                    <h:message for = "old" style = "color: red;font-size: 12px;" /> 
+                                                    <h:outputText value="#{employeeMB.messageConfirmOldPass}" style="color: red;font-size: 12px;"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="new" class="col-sm-3 col-form-label">New password</label>
+                                                <div class="col-sm-12">
+                                                    <h:inputSecret value="#{employeeMB.employees.newPass}" styleClass="form-control" required = "true" id="new" requiredMessage="This field cannot be empty!"/>
+                                                    <h:message for = "new" style = "color: red;font-size: 12px;" /> 
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="confirm" class="col-sm-3 col-form-label">Confirm password</label>
+                                                <div class="col-sm-12">
+                                                    <h:inputSecret value="#{employeeMB.employees.confirmNewPass}" styleClass="form-control" required = "true" id="confirm" requiredMessage="This field cannot be empty!"/>
+                                                    <h:message for = "confirm" style = "color: red;font-size: 12px;" />
+                                                    <h:outputText value="#{employeeMB.messageConfirmNewPass}" style="color: red;font-size: 12px;"/><br/>
+                                                    <small class="badge badge-warning"><i class="far fa-check-circle"></i>
+                                                        <h:outputText value="&nbsp;#{employeeMB.messagePass}" style="color: #060; font-size: 12px;"/>
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <h:commandButton type="submit" class="btn btn-info btn-sm" value="Save" action="#{employeeMB.saveUpDatePasswordEmployee()}"/>&nbsp;
+                                                    <h:link outcome="/admin/profile.xhtml" value="Back" class="btn btn-info btn-sm"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

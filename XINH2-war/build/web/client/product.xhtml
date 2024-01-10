@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+
+    </h:head>
+    <h:body>
+        <ui:composition template="/layouts/clientLayouts.xhtml">
+            <ui:define name="content">
+                <section class="breadcrumb breadcrumb_bg_1">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="breadcrumb_iner">
+                                    <div class="breadcrumb_iner_item">
+                                        <h2>Product</h2>
+                                        <p>Home <span>-</span> Product</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="cat_product_area section_padding">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="left_sidebar_area">
+                                    <aside class="left_widgets p_filter_widgets">
+                                        <div class="l_w_title">
+                                            <h3>Product Categories</h3>
+                                        </div>
+                                        <div class="widgets_inner">
+                                            <ul class="list">
+                                                <ui:repeat value="#{categoryMB.showAllCategory()}" var="itemC">
+                                                    <li>
+                                                        <a href="#"><h:outputText value="#{itemC.categoryName}"/></a>
+                                                    </li>
+                                                </ui:repeat>
+                                            </ul>
+                                        </div>
+                                    </aside>
+                                    <aside class="left_widgets p_filter_widgets">
+                                        <div class="l_w_title">
+                                            <h3>Product supplier</h3>
+                                        </div>
+                                        <div class="widgets_inner">
+                                            <ul class="list">
+                                                <ui:repeat value="#{supplierMB.showAllSupplier()}" var="itemS">
+                                                    <li>
+                                                        <a href="#"><h:outputText value="#{itemS.companyName}"/></a>
+                                                    </li>
+                                                </ui:repeat>
+                                            </ul>
+                                        </div>
+                                    </aside>
+                                    <aside class="left_widgets p_filter_widgets">
+                                        <div class="l_w_title">
+                                            <h3>Product Brand</h3>
+                                        </div>
+                                        <div class="widgets_inner">
+                                            <ul class="list">
+                                                <ui:repeat value="#{brandMB.showAllBrands()}" var="itemB">
+                                                    <li>
+                                                        <a href="#"><h:outputText value="#{itemB.brandName}"/></a>
+                                                    </li>
+                                                </ui:repeat>
+                                            </ul>
+                                        </div>
+                                    </aside>
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="product_top_bar d-flex justify-content-between align-items-center">
+                                            <div class="single_product_menu d-flex">
+                                                <h5>short by : </h5>
+                                                <select>
+                                                    <option data-display="Select">name</option>
+                                                    <option value="1">price</option>
+                                                    <option value="2">product</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="single_product_menu d-flex">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="search"
+                                                           aria-describedby="inputGroupPrepend"/>
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroupPrepend"><i
+                                                                class="ti-search"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center latest_product_inner text-center">
+                                    <c:forEach items="#{productMB.showAllProduct()}" var="itemP">
+                                        <c:if test="#{itemP.promotionStatus != 1}">
+                                            <div class="col-lg-4 col-sm-6">
+                                                <div class="single_product_item1">
+                                                    <h:graphicImage url="#{itemP.image}" class="shop-image"/>
+                                                    <h:link outcome="/client/productDetail.xhtml">
+                                                        <h:form>
+                                                            <h:commandLink type="submit" value="#{itemP.productName}" action="#{productMB.showProductDetails(itemP.productID)}" style="font-size: 18px; color: #666666;margin-top: 15px;"/><br/>
+                                                        </h:form>
+                                                    </h:link>
+                                                    <div class="rating_list">
+                                                        <ul class="list">
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                                    <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                                    <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                                    <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                                    <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <h3><h:outputText value="$#{itemP.unitPrice}" style="font-size: 18px; color: #ff3368;margin-top: 15px;"/></h3>
+                                                    <h:form>                                                                                                                                                                            
+                                                        <h:commandButton type="submit" action="#{cartMB.addCartProduct(itemP.productID)}" value="Add To Cart" class="btn_2" style="margin-bottom: 20px;border: none;"/> 
+                                                    </h:form>
+                                                </div>
+                                            </div>
+                                        </c:if>
+                                    </c:forEach>
+                                    <div class="col-lg-12">
+                                        <div class="pageination">
+                                            <nav aria-label="Page navigation example">
+                                                <ul class="pagination justify-content-center">
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#" aria-label="Previous">
+                                                            <i class="ti-angle-double-left"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#" aria-label="Next">
+                                                            <i class="ti-angle-double-right"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="product_list best_seller">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12">
+                                <div class="section_tittle text-center">
+                                    <h2>Promotional products</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-lg-12">
+                                <div class="best_product_slider owl-carousel">
+                                    <c:forEach items="#{productMB.showAllProduct()}" var="itemProduct">
+                                        <c:if test="#{itemProduct.promotionStatus == 1}">
+                                            <div class="single_product_item">
+                                                <div class="promotion-lable">#{itemProduct.promotionsCollection[0].discount}%</div>
+                                                <h:graphicImage url="#{itemProduct.image}"/><br/>
+                                                <h4><h:outputText value="#{itemProduct.productName}"/></h4>
+                                                <del style="font-size: 15px; color: #808080;">$<h:outputText value="#{itemProduct.unitPrice}"/></del>
+                                                <b style="font-size: 18px;">&nbsp;$#{itemProduct.unitPrice - (itemProduct.unitPrice * itemProduct.promotionsCollection[0].discount/100) }</b>
+                                                <div class="rating_list" style="margin-top: 10px;">
+                                                    <ul class="list">
+                                                        <li>
+                                                            <a href="#">
+                                                                <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                                <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                                <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                                <i class="fa fa-star" style="color: #FF9900;"></i>
+                                                                <i class="fa fa-star" style="color: #FF9900;"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <h:form>                                                                                                                                                                            
+                                                    <h:commandButton type="submit" action="#{cartMB.addCartProduct(itemProduct.productID)}" value="Add To Cart" class="btn_2" style="margin-top: 20px;border: none;"/> 
+                                                </h:form>
+                                            </div>  
+                                        </c:if>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+

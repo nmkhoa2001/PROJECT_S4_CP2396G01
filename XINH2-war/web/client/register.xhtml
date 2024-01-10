@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <h:outputStylesheet name="/client/img/favicon.png"/>
+        <h:outputStylesheet name="/client/css/bootstrap.min.css"/>
+        <h:outputStylesheet name="/client/css/animate.css"/>
+        <h:outputStylesheet name="/client/css/owl.carousel.min.css"/>
+        <h:outputStylesheet name="/client/css/all.css"/>
+        <h:outputStylesheet name="/client/css/flaticon.css"/>
+        <h:outputStylesheet name="/client/css/themify-icons.css"/>
+        <h:outputStylesheet name="/client/css/magnific-popup.css"/>
+        <h:outputStylesheet name="/client/css/slick.css"/>
+        <h:outputStylesheet name="/client/css/style.css"/>
+        <h:outputStylesheet name="/client/css/nice-select.css"/>
+        <h:outputStylesheet name="/client/css/price_rangs.css"/>
+        <style>
+            .gradient-custom-3 {
+                background: #ff3368;
+                background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+                background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
+            }
+            .gradient-custom-4 {
+                background: #ff3368;
+                background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+                background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <section class="vh-200 bg-image"
+                 style="background-image: url('https://webgradients.com/public/webgradients_png/011%20Dusty%20Grass.png');">
+            <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+                <div class="container h-100">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-12 col-md-9 col-lg-7 col-xl-7">
+                            <div class="card" style="border-radius: 35px; margin-bottom: 50px; margin-top: 50px;">
+                                <div class="card-body p-5">
+                                    <h2 class="text-uppercase text-center mb-5">Register</h2>
+                                    <h:form class="register-form" id="register-form"> 
+                                        <div class="form-outline mb-4">
+                                            <h:inputText id="name" value="#{customerMB.fullname}" a:placeHolder="Full Name" styleClass="form-control"/>
+                                            <h:outputText value="#{customerMB.nameMessage}" class="errorMessage" id="name_m" style = "color: red;"/>
+                                        </div>                                 
+
+                                        <div class="form-outline mb-4">
+                                            <h:inputText id="phone" class="txt-input" value="#{customerMB.phoneNumber}"  a:placeHolder="Phone Number" styleClass="form-control"/>
+                                            <h:outputText value="#{customerMB.phoneMessage}" class="errorMessage" id="phone_m" style = "color: red;"/>                                
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <h:inputText id="address" class="txt-input" value="#{customerMB.address}" a:placeHolder="Address" styleClass="form-control"/>
+                                            <h:outputText value="#{customerMB.addressMessage}" class="errorMessage" id="address_m" style = "color: red;"/>                               
+                                        </div>  
+                                        <div class="form-outline mb-4">
+                                            <h:inputText id="email" class="txt-input" value="#{customerMB.email}" a:placeHolder="Email" styleClass="form-control"/>
+                                            <h:outputText value="#{customerMB.emailMessage}" class="errorMessage" id="email_m" style = "color: red;"/>                                 
+                                        </div>
+                                        <div class="form-outline mb-4">                                
+                                            <h:inputText id="username" value="#{customerMB.username}" a:placeHolder="Username" styleClass="form-control"/>
+                                            <h:outputText value="#{customerMB.usernameMessage}" class="errorMessage" id="username_m" style = "color: red;"/>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <h:inputSecret id="password" class="txt-input" value="#{customerMB.password}" redisplay="true" a:placeHolder="Password" styleClass="form-control"/>
+                                            <h:outputText value="#{customerMB.passwordMessage}" class="errorMessage" id="password_m" style = "color: red;"/> 
+                                        </div>  
+                                        <div class="form-outline mb-4">
+                                            <h:inputSecret id="cfpassword" class="txt-input" value="#{customerMB.confirmPassword}" redisplay="true" a:placeHolder="Confirm Password" styleClass="form-control"/>
+                                            <h:outputText value="#{customerMB.cfPasswordMessage}" class="errorMessage" id="cfpassword_m" style = "color: red;"/>                         
+                                        </div>  
+                                        <div class="form-outline mb-4">                            
+                                            <h:outputLabel for="agree-term" class="label-agree-term"><span><span></span></span> Have already an account? 
+                                                <h:link class="lost_pass" outcome="login"><b style="font-size: 16px;">&nbsp;&nbsp;Login Here</b></h:link>
+                                            </h:outputLabel>
+                                        </div>
+                                        <div class="form-outline mb-4">                            
+                                            <h:commandButton type="submit" action="#{customerMB.registerCustomer()}" value="Register" styleClass="btn btn-block btn-lg btn_3">  
+                                                <f:ajax execute="@form" render="name_m username_m phone_m address_m email_m password_m cfpassword_m"/>
+                                            </h:commandButton>
+                                        </div>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <h:outputScript name="/asset/getupimage.js"/>
+        <h:outputScript name="/asset/image.js"/>
+        <h:outputScript name="/client/js/jquery-1.12.1.min.js"/>
+        <h:outputScript name="/client/js/popper.min.js"/>
+        <h:outputScript name="/client/js/bootstrap.min.js"/>
+        <h:outputScript name="/client/js/jquery.magnific-popup.js"/>
+        <h:outputScript name="/client/js/swiper.min.js"/>
+        <h:outputScript name="/client/js/masonry.pkgd.js"/>
+        <h:outputScript name="/client/js/owl.carousel.min.js"/>
+        <h:outputScript name="/client/js/jquery.nice-select.min.js"/>
+        <h:outputScript name="/client/js/slick.min.js"/>
+        <h:outputScript name="/client/js/jquery.counterup.min.js"/>
+        <h:outputScript name="/client/js/waypoints.min.js"/>
+        <h:outputScript name="/client/js/contact.js"/>
+        <h:outputScript name="/client/js/jquery.ajaxchimp.min.js"/>
+        <h:outputScript name="/client/js/jquery.form.js"/>
+        <h:outputScript name="/client/js/jquery.validate.min.js"/>
+        <h:outputScript name="/client/js/mail-script.js"/>
+        <h:outputScript name="/client/js/custom.js"/>
+        <h:outputScript name="/client/js/price_rangs.js"/>
+        <h:outputScript name="/client/js/stellar.js"/>
+        <h:outputScript rendered="#{customerMB.showAlert}">
+            <script>
+                swal({
+                    title: 'Successfully',
+                    text: 'The information has been saved',
+                    icon: 'success'
+                }).then(function () {
+                    window.location = '/KAYA-war/faces/client/login.xhtml';
+                });
+            </script>
+
+        </h:outputScript>     
+    </h:body> 
+</html>

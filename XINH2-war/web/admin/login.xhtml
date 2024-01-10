@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" ></link>
+        <h:outputStylesheet name="/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css"/>
+        <h:outputStylesheet name="/admin/dist/css/adminlte.min.css"/>
+    </h:head>
+    <h:body class="hold-transition login-page" style="background-color: #f8fbff;">
+        <h:form>
+            <div class="login-box" style="width: 460px;">
+                <div class="card card-outline card-info">
+                    <div class="card-header text-center">
+                        <a href="#" class="h4">LOGIN</a>
+                    </div>
+                    <div class="card-body">
+                        <c:if test="#{loginMB.statusLogin == 3}">
+                            <p style="color: red;">Username or password incorrect!</p>
+                        </c:if>
+
+                        <label>Username</label>&nbsp;&nbsp;<h:message for = "username" style = "color: red; font-size: 14px;"/>
+                        <div class="input-group mb-3">
+                            <h:inputText value="#{loginMB.username}" id="username" class="form-control" required = "true" requiredMessage="This field cannot be empty!"/>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <label>Password</label>&nbsp;&nbsp;<h:message for = "password" style = "color: red; font-size: 14px;"/>
+                        <div class="input-group mb-3">
+                            <h:inputSecret value="#{loginMB.password}" class="form-control" id="password" required = "true" requiredMessage="This field cannot be empty!"/>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-key"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="social-auth-links text-center mt-2 mb-3">
+                            <h:commandButton value="Login" action="#{loginMB.processLogin()}" type="submit" class="btn btn-block btn-info"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+        <h:outputScript name="/admin/plugins/jquery/jquery.min.js"/>
+        <h:outputScript name="/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"/>
+        <h:outputScript name="/admin/dist/js/adminlte.min.js"/>
+    </h:body>
+</html>
+

@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="/layouts/adminLayouts.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <f:metadata>
+                        <f:event type="preRenderView" listener="#{loginMB.checkLogin1()}"></f:event>
+                    </f:metadata>
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h3 class="m-0">Product Details</h3>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Product Details</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <section class="content">
+                        <div class="card card-solid">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12 col-sm-6">
+                                        <h2 class="d-inline-block d-sm-none">LOWA Men’s Renegade GTX Mid Hiking Boots Review</h2>
+                                        <h:inputHidden value="#{productMB.products.productID}"/>
+                                        <div class="col-12">
+                                            <h:graphicImage url="#{productMB.products.image}" class="product-image" width="100px"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <h1 class="my-3"><h:outputText value="#{productMB.products.productName}"/></h1>                                        
+                                        <hr/>
+                                        <div class="py-2 px-3 mt-4">
+                                            <h2 class="mb-0">
+                                                <h:outputText value="$#{productMB.products.unitPrice}"/>
+                                            </h2>
+                                        </div>
+                                        <br/><hr/>
+                                        <h6>Categories: <span style="color: #0000FF;"><h:outputText value="#{productMB.products.categoryID.categoryName}"/></span></h6><br/>
+                                        <h6>Supplier Name: <span style="color: #0000FF;"><h:outputText value="#{productMB.products.supplierID.companyName}"/></span></h6><br/>
+                                        <h6>Brand Name: <span style="color: #0000FF;"><h:outputText value="#{productMB.products.brandID.brandName}"/></span></h6><br/>
+                                        <h6>Price Apply Promotion ($): <span style="color: #0000FF;"><h:outputText value="#{productMB.products.promotionStatus == 1 ? productMB.products.unitPrice - (productMB.products.unitPrice * productMB.products.promotionsCollection[0].discount/100) : productMB.products.unitPrice}"/></span></h6><br/>
+                                        <h6>Available quantity: <span style="color: #0000FF;"><h:outputText value="#{productMB.products.quantity}"/></span></h6><br/>
+                                        <h6>Promotion Status: <span style="color: #0000FF;"><h:outputText value="#{productMB.products.promotionStatus == 1 ? 'Promotion Enabled' : 'Promotion Disabled'}"/></span></h6><br/>
+
+                                        <h:link outcome="/admin/productList.xhtml" class="btn btn-info btn-sm">Back</h:link>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <nav class="w-100">
+                                        <div class="nav nav-tabs" id="product-tab" role="tablist">
+                                            <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="true">Product Description</a>
+                                        </div>
+                                    </nav>
+                                    <div class="tab-content p-3" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">  <p><h:outputText value="#{productMB.products.description}"/></p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
